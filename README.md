@@ -1,4 +1,4 @@
-# Resume Studio
+# Resume Builder
 
 Free, private resume builder that runs entirely in the browser. No backend, no accounts, no uploads.
 
