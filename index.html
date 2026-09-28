@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume Studio</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="home">Home</div>
+<div class="canvas" id="canvas">
+  <aside class="panel left" id="left">
+    <div class="head"><button class="file" id="fileBtn"><span id="fileName">Untitled_resume</span> ⌄</button><button class="ico" id="hide" title="Hide side panels" aria-label="Toggle side panels">▯</button></div>
+    <div class="body" id="leftBody">
+      <div class="seg"><button data-tab="layers" class="on">Layers</button><button data-tab="templates">Templates</button></div>
+      <section id="tab-layers"><h4>Added layers</h4><div id="layers"></div><h4>Suggested layers</h4><div id="sugs"></div></section>
+      <section id="tab-templates" hidden>
+        <label class="upload" for="up"><span>Upload your resume<small>Supported: .json, .txt</small></span><b>⤒</b></label>
+        <input type="file" id="up" accept=".json,.txt" hidden>
+        <div class="tpls" id="tpls"></div>
+      </section>
+    </div>
+  </aside>
+
+  <main class="stage" id="stage"><div class="zoomwrap" id="zw"><div id="paper"></div></div></main>
+
+  <aside class="right" id="right">
+    <div class="panel health" id="health">
+      <button class="hh" id="hhead"><span><b>Resume Health</b> ›<small>Rule-based analysis</small></span><span class="pill" id="pill">0/100</span></button>
+      <div class="bar"><i id="bar"></i></div>
+      <div id="hbody" hidden>
+        <p class="note">Rule-based checks that run in your browser. Not a real ATS score: every employer system parses differently.</p>
+        <div id="checks"></div>
+        <h4>Match a job description</h4>
+        <textarea id="jd" placeholder="Paste a job description to see which keywords your resume is missing"></textarea>
+        <div class="chips" id="kw"></div>
+        <p class="note">Your resume stays in this tab. Nothing is uploaded.</p>
+      </div>
+    </div>
+    <div class="panel props" id="props">
+      <h4>Alignment</h4>
+      <div class="icons" id="align"><button data-al="left" title="Left">⇤</button><button data-al="right" title="Right">⇥</button><button data-al="center" title="Center">↔</button><button data-al="justify" title="Justify">≡</button></div>
+      <h4>Text</h4>
+      <label class="field"><input id="txt" placeholder="Select text on the resume"><span>✎</span></label>
+      <h4>Size</h4>
+      <select id="ff"><option value="">Template font</option><option value="Arial,Helvetica,sans-serif">Sans</option><option value="Georgia,serif">Serif</option><option value="Consolas,monospace">Mono</option></select>
+      <label class="field"><span>Size</span><input id="fs" type="number" min="8" max="60" placeholder="Auto"></label>
+      <div class="icons" id="fmt"><button data-f="b"><b>B</b></button><button data-f="i"><i>I</i></button><button data-f="u"><u>U</u></button><button data-f="s"><s>S</s></button></div>
+      <h4>Color</h4>
+      <label class="field"><span>Fill</span><input id="fill" type="color" value="#1b1b1b"></label>
+      <div class="sw" id="sw"></div>
+      <h4>Appearance</h4>
+      <label class="field"><span>Opacity</span><input id="op" type="range" min="20" max="100" value="100"></label>
+    </div>
+  </aside>
+
+  <div class="toolbar" id="toolbar">
+    <button id="undo" title="Undo (Ctrl+Z)">↶</button><button id="redo" title="Redo (Ctrl+Shift+Z)">↷</button><i></i>
+    <button id="addText" title="Add text block">T</button><button id="outline" title="Show text boxes">▢</button><button id="fix" title="Auto-fix: remove duplicate skills, trim spaces">✦</button><i></i>
+    <select id="zoom" aria-label="Zoom"><option>50</option><option>75</option><option selected>95</option><option>100</option><option>125</option></select><span>%</span>
+    <button class="exp" id="exportBtn">Export ⤓</button>
+  </div>
+</div>
+
+<div class="modal" id="modal" hidden><div class="card" role="dialog" aria-label="Export as">
+  <div class="mh"><b>Export as</b><span><button class="lnk" id="copy">Copy link</button><button class="ico" id="x" aria-label="Close">✕</button></span></div>
+  <label class="mr">Format type<select id="fmtSel"><option value="png">.PNG</option><option value="pdf">.PDF</option><option value="docx">.DOCX</option><option value="json">.JSON</option></select></label>
+  <label class="mr" id="scaleRow">Scale<select id="scale"><option value="1">1x</option><option value="2">2x</option><option value="3">3x</option><option value="4">4x</option><option value="5">5x</option></select></label>
+  <div class="mf"><button id="cancel">Cancel</button><button class="pri" id="dl">Download ⤓</button></div>
+  <p class="note" id="msg" role="status"></p>
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

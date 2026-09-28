@@ -1,0 +1,14 @@
+name: Release
+on:
+  push: { tags: ["v*"] }
+permissions: { contents: write }
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: zip -r resume-studio-${{ github.ref_name }}.zip index.html styles.css app.js README.md LICENSE
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: resume-studio-${{ github.ref_name }}.zip
+          generate_release_notes: true
